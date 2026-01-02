@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api/contacts";
+const BASE_URL = "https://contact-management.onrender.com/api/contacts";
 
 // GET all contacts (with optional sorting)
 export const getContacts = async (sort = "latest") => {
