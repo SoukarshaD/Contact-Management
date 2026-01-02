@@ -69,7 +69,7 @@ PUT	/api/contacts/:id	Update contact
 DELETE	/api/contacts/:id	Delete contact
 ⚙️ Setup Instructions
 1️⃣ Clone the repository
-git clone https://github.com/your-username/contact-management-app.git
+git clone https://github.com/SoukarshaD/contact-management-app.git
 cd contact-management-app
 
 2️⃣ Backend Setup
