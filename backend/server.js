@@ -22,14 +22,13 @@ app.get("/", (req, res) => {
 // Database and servers
 const PORT = process.env.PORT || 5000;
 
+// start server FIRST
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// then connect to DB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.error("MongoDB error:", err));
