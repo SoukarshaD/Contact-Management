@@ -1,4 +1,5 @@
-const BASE_URL = "https://contact-management.onrender.com/api/contacts";
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 // GET all contacts (with optional sorting)
 export const getContacts = async (sort = "latest") => {
