@@ -6,7 +6,14 @@ require("dotenv").config();
 const app = express();
 
 // CORS
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://contact-management-green.vercel.app/" 
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"]
+}));
 
 // Body parser
 app.use(express.json());
