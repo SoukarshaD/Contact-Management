@@ -5,34 +5,31 @@ require("dotenv").config();
 
 const app = express();
 
-// CORS FIX
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
-
-app.use(express.json());
-
-// Middlewares
+//CORS
 app.use(cors());
+
+// Body parser
 app.use(express.json());
 
 // Routes
 app.use("/api/contacts", require("./routes/contactRoutes"));
 
-// Test route
+//Test Route
 app.get("/", (req, res) => {
-    res.send("Contact Manager API is running");
+  res.send("Contact Manager API is running");
 });
 
-// Database connection
+// Database and servers
+const PORT = process.env.PORT || 5000;
+
 mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log("MongoDB Connected");
-        app.listen(5000, () =>
-            console.log("Server running on port 5000")
-        );
-    })
-    .catch((err) => console.log(err));
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB Connected");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
