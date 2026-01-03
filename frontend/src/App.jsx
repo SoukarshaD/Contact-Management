@@ -16,19 +16,19 @@ function App() {
 
   // Fetch contacts from backend
   const fetchContacts = async (sortType = sort, retry = 0) => {
-  try {
-    const data = await getContacts(sortType);
-    setContacts(data);
-    setError("");
-  } catch {
-    if (retry < 3) {
-      setError("Waking up server, please wait…");
-      setTimeout(() => fetchContacts(sortType, retry + 1), 3000);
-    } else {
-      setError("Failed to load contacts");
+    try {
+      const data = await getContacts(sortType);
+      setContacts(data);
+      setError("");
+    } catch {
+      if (retry < 5) {
+        setError("Waking up server, please wait…");
+        setTimeout(() => fetchContacts(sortType, retry + 1), 5000);
+      } else {
+        setError("Server is taking longer than usual. Please refresh.");
+      }
     }
-  }
-};
+  };
 
   // Add new contact
   const handleAddContact = async (contactData) => {
