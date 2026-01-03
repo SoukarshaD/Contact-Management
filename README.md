@@ -19,25 +19,7 @@ A full-stack Contact Management Web Application built using the MERN stack, allo
 ⚠️ Proper error handling & messages
 
 🛠️ Tech Stack
-Frontend
-
-React.js (Vite)
-
-Tailwind CSS
-
-JavaScript (ES6)
-
-useState & useEffect
-
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB (Atlas / Compass)
-
-Mongoose
+Frontend, React.js (Vite), Tailwind CSS, JavaScript (ES6), useState & useEffect, Backend, Node.js, Express.js, MongoDB (Atlas / Compass), Mongoose
 
 🔌 API Endpoints
 Method	Endpoint	Description
@@ -108,6 +90,9 @@ Pagination
 Authentication (JWT)
 
 Deployment (Vercel + Railway)
+
+
+
 
 
 ⚠️ Known Limitation (Free Tier Cold Start)
