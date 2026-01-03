@@ -5,6 +5,18 @@ require("dotenv").config();
 
 const app = express();
 
+// CORS FIX
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
+// Handle preflight explicitly
+app.options("*", cors());
+
+app.use(express.json());
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
