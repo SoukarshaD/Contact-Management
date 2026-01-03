@@ -15,15 +15,20 @@ function App() {
   const [editingContact, setEditingContact] = useState(null);
 
   // Fetch contacts from backend
-  const fetchContacts = async (sortType = sort) => {
-    try {
-      const data = await getContacts(sortType);
-      setContacts(data);
-      setError("");
-    } catch {
+  const fetchContacts = async (sortType = sort, retry = 0) => {
+  try {
+    const data = await getContacts(sortType);
+    setContacts(data);
+    setError("");
+  } catch {
+    if (retry < 3) {
+      setError("Waking up server, please wait…");
+      setTimeout(() => fetchContacts(sortType, retry + 1), 3000);
+    } else {
       setError("Failed to load contacts");
     }
-  };
+  }
+};
 
   // Add new contact
   const handleAddContact = async (contactData) => {
