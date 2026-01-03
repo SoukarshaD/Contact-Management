@@ -39,28 +39,6 @@ MongoDB (Atlas / Compass)
 
 Mongoose
 
-📂 Project Structure
-Contact-management-app/
-│
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── server.js
-│   └── .env
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── services/
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── tailwind.config.js
-│   ├── postcss.config.cjs
-│   └── vite.config.js
-│
-└── README.md
-
 🔌 API Endpoints
 Method	Endpoint	Description
 GET	/api/contacts	Fetch all contacts
@@ -129,7 +107,40 @@ Pagination
 
 Authentication (JWT)
 
-Deployment (Vercel + Render)
+Deployment (Vercel + Railway)
+
+
+⚠️ Known Limitation (Free Tier Cold Start)
+
+This project uses free-tier cloud services for deployment (Railway for backend and MongoDB Atlas for database).
+
+🕒 Cold Start Behavior
+
+When the application is accessed after a period of inactivity, the backend server may be in a sleep state.
+
+On the first request, the server needs time to wake up and reconnect to the database.
+
+This can cause a short delay (usually 10–30 seconds) before data loads.
+
+💡 How It’s Handled
+
+The frontend includes retry logic and shows a friendly message:
+
+“Waking up server, please wait…”
+
+Once the backend is active, the application works normally.
+
+Subsequent requests are fast and stable.
+
+🚀 Production Note
+
+In a production environment, this issue can be avoided by:
+
+Using a paid hosting plan, or
+
+Keeping the backend active with a periodic health check (keep-alive ping).
+
+This limitation is common with free-tier deployments and does not affect the core functionality or correctness of the application.
 
 👨‍💻 Author
 
