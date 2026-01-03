@@ -5,17 +5,29 @@ require("dotenv").config();
 
 const app = express();
 
-// CORS
+//DYNAMIC CORS
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://contact-management-green.vercel.app" 
-  ],
+  origin: (origin, callback) => {
+    // allow server-to-server & tools like curl/postman
+    if (!origin) return callback(null, true);
+
+    // allow localhost
+    if (origin.startsWith("http://localhost")) {
+      return callback(null, true);
+    }
+
+    // allow ALL vercel subdomains
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    // block everything else
+    return callback(new Error("CORS not allowed"), false);
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"]
 }));
 
-// Body parser
 app.use(express.json());
 
 // Routes
